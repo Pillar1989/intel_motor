@@ -2,19 +2,23 @@ __author__ = 'Pillar'
 import mraa
 import time
 
+
+
 class motor(object):
 	'motor driver'
 	__speed = 0.5
+
 	def __init__(self,en,ina,inb,pwm):
 		self.__pin_en = mraa.Gpio(en)
 		self.__pin_ina = mraa.Gpio(ina)
 		self.__pin_inb = mraa.Gpio(inb)
 		self.__pin_pwm = mraa.Pwm(pwm)
 
+
 		self.__pin_en.dir(mraa.DIR_OUT)
 		self.__pin_ina.dir(mraa.DIR_OUT)
 		self.__pin_inb.dir(mraa.DIR_OUT)
-		self.__pin_pwm.period_ms(10)
+		self.__pin_pwm.period_us(100)
 		self.__pin_pwm.write(self.__speed)
 		self.__pin_pwm.enable(True)
 
@@ -65,6 +69,8 @@ class motor(object):
 		elif self.__speed > 1:
 			self.__speed = 1
 		self.__pin_pwm.write(self.__speed)
+
+
 
 
 
